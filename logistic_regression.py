@@ -17,7 +17,7 @@ X_test = test.drop(['id'],axis=1)
 
 
 # Splitting the dataset in training and validation
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size = 0.25, shuffle = None, random_state = 0)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size = 0.2, shuffle = None, random_state = 0)
 
 scaler = StandardScaler()
 train_ = scaler.fit_transform(X_train)
@@ -40,3 +40,9 @@ logreg = LogisticRegression(**best_parameters)
 logreg.fit(train_, y_train)
 accuracy = logreg.score(val_, y_val)
 print("accuracy:", accuracy)
+
+# Logistic Regression model
+y_pred_final=logreg.predict_proba(test_)[:,1]
+
+submission = pd.DataFrame({"id": test["id"],"target": y_pred_final})
+submission.to_csv('submission_log.csv', index=False)
