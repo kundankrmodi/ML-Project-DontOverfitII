@@ -112,8 +112,8 @@ neural_net_model = Sequential()
 # neural_net_model.add(Dense(6, init='uniform', activation='sigmoid'))
 # neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
 
-# neural_net_model.add(Dense(150, input_dim=num_features, init='uniform', activation='sigmoid'))
-# neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
+neural_net_model.add(Dense(300, input_dim=num_features, init='uniform', activation='sigmoid'))
+neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
 
 # neural_net_model.add(Dense(75, input_dim=num_features, init='uniform', activation='sigmoid'))
 # neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
@@ -136,15 +136,19 @@ neural_net_model = Sequential()
 # neural_net_model.add(Dense(40, input_dim=num_features, init='uniform', activation='relu'))
 # neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
 #
-neural_net_model.add(Dense(20, input_dim=num_features, init='uniform', activation='relu'))
-neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
+# neural_net_model.add(Dense(20, input_dim=num_features, init='uniform', activation='relu'))
+# neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
 
 # neural_net_model.add(Dense(10, input_dim=num_features, init='uniform', activation='relu'))
 # neural_net_model.add(Dense(1, init='uniform', activation='sigmoid'))
 
+# No hidden layers
+# neural_net_model.add(Dense(20, input_dim=num_features, init='uniform', activation='relu'))
+# neural_net_model.add(Dense(1, input_dim=num_features, init='uniform', activation='sigmoid'))
+
 
 neural_net_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-neural_net_model.fit(train_instances, train_labels, epochs=2, batch_size=1, verbose=2)
+neural_net_model.fit(train_instances, train_labels, epochs=600, batch_size=10, verbose=2)
 
 predictions = neural_net_model.predict(test_instances)
 
